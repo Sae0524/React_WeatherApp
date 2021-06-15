@@ -1,5 +1,5 @@
 import React, {useContext} from "react"
-
+import "../styles/styles.css"
 import Context from "../Context"
 
 const WeatherData = () => {
@@ -11,16 +11,12 @@ const WeatherData = () => {
       <div className="weather-data__box">
          <span className="weather-data__property">
            <p className="weather-data__title">Temperature</p>
-           <p className="weather-data__value">{temp}</p>
+           <p className="weather-data__value">{temp}°C</p>
          </span>
          <span className="weather-data__property">
            <p className="weather-data__title">Humidity</p>
-           <p className="weather-data__value">{humidity}</p>
+           <p className="weather-data__value">{humidity}%</p>
          </span>
-         {/* <span className="weather-data__property">
-           <p className="weather-data__title">Pressure</p>
-           <p className="weather-data__value">1001</p>
-         </span> */}
        </div>
     </div>
   )

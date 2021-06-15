@@ -21,8 +21,7 @@ const Main = () => {
     e.preventDefault() //to make sure it doesn't refresh when you submitted 
     location = e.target.elements.location.value;
   
-    // Error messege
-    if (!location) return setError("No weather found"),setWeather(null)
+    if (!location) return setError("No weather found :("),setWeather(null)
     const API_KEY = "0fc6feddfe7397fb225cfa9a3e731808"
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`
     const request = axios.get(url)
@@ -31,21 +30,22 @@ const Main = () => {
     setCity(response.data.name)
     setError(null)
   }
-  // Similar to componentDidMount and componentDidUpdate:
+
+  const firstFetch = async (location) => {
+    // Error messege
+  if (!location) return setError("No weather found :("),setWeather(null)
+  const API_KEY = "0fc6feddfe7397fb225cfa9a3e731808"
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`
+  const request = axios.get(url)
+  const response = await request
+  setWeather(response.data.main)
+  setCity(response.data.name)
+  setError(null)
+ }
+
+
   useEffect(() => {
-    // Update the document title using the browser API
- 
-  const firstFetch = async () => {
-     // Error messege
-   if (!location) return setError("No weather found"),setWeather(null)
-   const API_KEY = "0fc6feddfe7397fb225cfa9a3e731808"
-   const url = `https://api.openweathermap.org/data/2.5/weather?q=vancouver&appid=${API_KEY}&units=metric`
-   const request = axios.get(url)
-   const response = await request
-   setWeather(response.data.main)
-   setCity(response.data.name)
-   setError(null)
-  }
+    firstFetch("Vancouver")
   },[]);
 
 
